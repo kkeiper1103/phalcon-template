@@ -1,0 +1,25 @@
+{
+  "name": "kkeiper1103/phalcon-site",
+  "description": "A Phalcon test site to learn how to use Phalcon with Docker",
+  "minimum-stability": "dev",
+
+  "config": {
+    "platform": {
+      "php": "8.3",
+      "ext-phalcon": "5.8"
+    }
+  },
+
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+
+  "require": {
+    "phalcon/ide-stubs": "^5.8"
+  },
+  "require-dev": {
+    "phalcon/devtools": "^5.0.x-dev"
+  }
+}

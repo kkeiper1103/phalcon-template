@@ -1,0 +1,48 @@
+services:
+  site:
+    build:
+      context: ./
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - site-db
+
+    volumes:
+      - ./docker-compose/nginx/:/etc/nginx/conf.d/
+      - ./docker-compose/php/zz-custom.ini:/etc/php/8.3/fpm/conf.d/zz-custom.ini
+      - ./site/:/srv/www/
+      - site-uploads:/srv/www/storage/uploads
+
+    networks:
+      - public
+      - private
+
+  site-db:
+    image: ubuntu/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: phalcon_local
+      MYSQL_ROOT_PASSWORD: f8dJ#*fd
+      MYSQL_PASSWORD: password
+      MYSQL_USER: phalcon_local
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - site-database:/var/lib/mysql
+
+    networks:
+      - private
+
+networks:
+  public:
+  private:
+
+volumes:
+  site-database:
+    driver: local
+
+  site-uploads:
+    driver: local
