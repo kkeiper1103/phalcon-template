@@ -1,9 +1,19 @@
 services:
   site:
+    container_name: application
     build:
       context: ./
+
     ports:
       - 8080:8080
+
+    environment:
+      DB_DRIVER: mysql
+      DB_HOST: site-db
+      DB_USER: phalcon_site
+      DB_PASS: password
+      DB_NAME: phalcon_site
+      APP_ENV: local
 
     depends_on:
       - site-db
@@ -20,12 +30,13 @@ services:
 
   site-db:
     image: ubuntu/mysql
+    container_name: database
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: phalcon_local
+      MYSQL_DATABASE: phalcon_site
       MYSQL_ROOT_PASSWORD: f8dJ#*fd
       MYSQL_PASSWORD: password
-      MYSQL_USER: phalcon_local
+      MYSQL_USER: phalcon_site
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
 
