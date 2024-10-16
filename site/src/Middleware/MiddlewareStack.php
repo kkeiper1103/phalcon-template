@@ -3,6 +3,7 @@
 namespace App\Middleware;
 
 use Phalcon\Mvc\Application;
+use Phalcon\Mvc\Router;
 
 class MiddlewareStack
 {
@@ -24,8 +25,15 @@ class MiddlewareStack
     public function handle(string $request): \Phalcon\Http\Response
     {
         $next = function (string $request) {
+
+
             // Base case, if no middleware remains, this function is called.
-            return $this->application->handle($request);
+            $response = $this->application->handle($request);
+
+
+            // var_dump($request, $this->application->di->get(Router::class)); exit;
+
+            return $response;
         };
 
         // Loop over the middlewares in reverse order to chain them properly

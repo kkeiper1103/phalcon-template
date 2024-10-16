@@ -1,5 +1,25 @@
-<form action="" method="post">
+<form action="<?= empty($post->id) ? "/posts/" : "/posts/{$post->id}" ?>" method="post">
+    <?= App\csrf_token() ?>
 
+    <div class="mb-3">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" id="title" value="<?= $_POST['title'] ?? $post->title ?>">
+    </div>
 
-    <button>Save Post</button>
+    <div class="mb-3">
+        <label for="slug">Slug</label>
+        <input class="form-control" type="text" name="slug" id="slug" value="<?= $_POST['slug'] ?? $post->slug ?>">
+    </div>
+
+    <div class="mb-3">
+        <label for="content">Content</label>
+        <textarea class="form-control" name="content" id="content"><?= $_POST['content'] ?? $post->content ?></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="author">Author</label>
+        <input class="form-control" type="text" name="author" id="author" value="<?= $_POST['author'] ?? $post->author ?>">
+    </div>
+
+    <button class="btn btn-primary mb-3">Save Post</button>
 </form>

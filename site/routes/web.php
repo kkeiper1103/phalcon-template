@@ -15,28 +15,34 @@ $router->addPost("contact", [
     'action' => 'store'
 ]);
 
-//
+
+$router->addGet("/{slug:(.*)}", [
+    'controller' => \App\Controllers\PostController::class,
+    'action' => 'show'
+]);
+
+/**
+ * show case how to use a route group
+ */
 $posts = new Router\Group([
     'controller' => \App\Controllers\PostController::class
 ]);
 $posts->setPrefix('/posts');
+
+// add all of the resourceful routes
 $posts->addGet('/', ['action' => 'index']);
-$posts->addGet('/{id:([0-9]+)}', ['action' => 'show']);
 $posts->addGet('/create', ['action' => 'create']);
 $posts->addPost('/', ['action' => 'store']);
-$posts->addGet('/{id:([0-9]+)}/edit', [ 'action' => 'edit']);
-$posts->addPost('/{id:([0-9]+)}', ['action' => 'update']);
-$posts->addPost('/{id:([0-9]+)}/destroy', ['action' => 'destroy']);
+$posts->addGet('/{id:([\d]+)}', ['action' => 'show']);
+$posts->addGet('/{id:([\d]+)}/edit', [ 'action' => 'edit']);
+$posts->addPost('/{id:([\d]+)}', ['action' => 'update']);
+$posts->addPost('/{id:([\d]+)}/destroy', ['action' => 'destroy']);
+
+// finally, mount the group of routes into the router
 $router->mount($posts);
 
-$router->addGet("{slug}", [
-    'controller' => \App\Controllers\PostController::class,
-    'action' => 'show'
-]);
 
 $router->addGet('/', [
     'controller' => \App\Controllers\IndexController::class,
     'action' => 'index'
 ]);
-
-// var_dump($router->getRoutes()); exit;

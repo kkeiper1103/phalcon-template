@@ -3,12 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\Post;
+use Phalcon\Db\Adapter\AdapterInterface;
+use Phalcon\Http\Response;
 use Phalcon\Mvc\Controller;
+use function App\redirect;
 
 class PostController extends Controller
 {
     public function index() {
         $this->view->pick('posts/index');
+        $this->view->posts = Post::find();
         $this->view->title = "Hello Post Controller";
     }
 
@@ -18,7 +22,14 @@ class PostController extends Controller
     }
 
     public function store() {
+        $post = new Post();
 
+        $result = $post->fill($_POST)->save();
+
+        if($result) $this->flashSession->success("Successfully Saved Post");
+        else $this->flashSession->error("Unable to Save Post");
+
+        return redirect("/posts/");
     }
 
     public function show() {
@@ -35,7 +46,6 @@ class PostController extends Controller
         $id = $this->dispatcher->getParam('id');
 
         $post = Post::findFirstById($id);
-        var_dump($post);
 
         $this->view->pick('posts/edit');
         $this->view->title = "Edit Post Controller";
@@ -45,7 +55,12 @@ class PostController extends Controller
     public function update(string $id) {
         $post = Post::findFirstById($id);
 
+        $result = $post->fill($_POST)->save();
 
+        if($result) $this->flashSession->success("Successfully Saved Post");
+        else $this->flashSession->error("Unable to Save Post");
+
+        return redirect("/posts/");
     }
 
     public function destroy(string $id) {

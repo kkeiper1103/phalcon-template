@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
-use Phalcon\Mvc\Model;
-
-class Post extends Model
+class Post extends BaseModel
 {
-    public int $id;
-    public string $title;
-    public string $content;
-    public string $author;
+    protected array $fillable = [
+        'title', 'slug', 'content', 'author'
+    ];
 
-    public $created_at;
-    public $updated_at;
+    public ?int $id = null;
+    public string $title = "";
+
+    public string $slug = "";
+    public string $content = "";
+    public string $author = "";
+
+    public $created_at = null;
+    public $updated_at = null;
 
     public function initialize(): void {
         $this->setSource('posts');

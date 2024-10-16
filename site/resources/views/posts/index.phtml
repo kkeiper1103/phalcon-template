@@ -1,1 +1,13 @@
 <h1>Post Index</h1>
+
+<p><a href="/posts/create" class="btn btn-outline-primary">Create Post</a></p>
+
+<ul class="list-unstyled">
+    <?php foreach($posts as $post): ?>
+    <li>
+        <a href="/posts/<?= $post->id ?>"><?= $post->title ?></a>
+    </li>
+    <?php endforeach ?>
+</ul>
+
+<p><a href="/posts/create" class="btn btn-outline-primary">Create Post</a></p>

@@ -6,6 +6,7 @@ return [
         \App\Providers\MailerProvider::class,
         \App\Providers\RouterProvider::class,
         \App\Providers\ViewProvider::class,
-        \App\Providers\DatabaseProvider::class
+        \App\Providers\DatabaseProvider::class,
+        \App\Providers\SessionProvider::class,
     ]
 ];
