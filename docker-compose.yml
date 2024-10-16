@@ -22,7 +22,7 @@ services:
       - ./docker-compose/nginx/:/etc/nginx/conf.d/
       - ./docker-compose/php/zz-custom.ini:/etc/php/8.3/fpm/conf.d/zz-custom.ini
 
-      # uncomment this line in production so that the mount doesn't override the Dockerfile-built application
+      # comment this line in production so that the mount doesn't override the Dockerfile-built application
       - ./site/:/srv/www/
       - site-uploads:/srv/www/storage/uploads
 

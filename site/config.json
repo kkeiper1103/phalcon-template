@@ -1,0 +1,11 @@
+{
+  "migration": {
+    "migrations": "database/migrations",
+    "config": "config/migrations.php"
+  },
+  "controller": {
+    "namespace": "App\\Controllers\\",
+    "directory": "src/Controllers/",
+    "base-class": "Phalcon\\Mvc\\Controller"
+  }
+}

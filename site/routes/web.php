@@ -20,13 +20,13 @@ $posts = new Router\Group([
     'controller' => \App\Controllers\PostController::class
 ]);
 $posts->setPrefix('/posts');
-$posts->add('/', ['action' => 'index']);
-$posts->add('/{id}', ['action' => 'show']);
-$posts->add('/create', ['action' => 'create']);
+$posts->addGet('/', ['action' => 'index']);
+$posts->addGet('/{id:([0-9]+)}', ['action' => 'show']);
+$posts->addGet('/create', ['action' => 'create']);
 $posts->addPost('/', ['action' => 'store']);
-$posts->add('/{id}/edit', [ 'action' => 'edit']);
-$posts->addPost('/{id}', ['action' => 'update']);
-$posts->addPost('/{id}/destroy', ['action' => 'destroy']);
+$posts->addGet('/{id:([0-9]+)}/edit', [ 'action' => 'edit']);
+$posts->addPost('/{id:([0-9]+)}', ['action' => 'update']);
+$posts->addPost('/{id:([0-9]+)}/destroy', ['action' => 'destroy']);
 $router->mount($posts);
 
 $router->addGet("{slug}", [
@@ -38,3 +38,5 @@ $router->addGet('/', [
     'controller' => \App\Controllers\IndexController::class,
     'action' => 'index'
 ]);
+
+// var_dump($router->getRoutes()); exit;
