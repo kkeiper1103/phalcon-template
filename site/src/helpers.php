@@ -18,3 +18,8 @@ function redirect(string $location, int $status = 302): ResponseInterface {
 
     return $redirect;
 }
+
+
+function old(string $key, string $default = null): string {
+    return $_POST[$key] ?? $default;
+}

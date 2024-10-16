@@ -6,11 +6,14 @@ use App\Models\Post;
 use Phalcon\Db\Adapter\AdapterInterface;
 use Phalcon\Http\Response;
 use Phalcon\Mvc\Controller;
+use Phalcon\Mvc\View;
+use Psr\Http\Message\ServerRequestInterface;
 use function App\redirect;
 
 class PostController extends Controller
 {
-    public function index() {
+    public function index(ServerRequestInterface $request, View $view) {
+
         $this->view->pick('posts/index');
         $this->view->posts = Post::find();
         $this->view->title = "Hello Post Controller";

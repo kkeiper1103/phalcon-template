@@ -14,7 +14,7 @@ class SessionProvider implements ServiceProviderInterface
     #[\Override]
     public function register(DiInterface $di): void
     {
-        $di->set('session', function() {
+        $di->set(Manager::class, function() {
             $session = new Manager();
             $storage = new Stream([
                 'savePath' => BASE_PATH . '/storage/tmp'
@@ -24,6 +24,7 @@ class SessionProvider implements ServiceProviderInterface
 
             return $session;
         });
+        $di->set('session', $di->get(Manager::class));
 
         $di->set('flashSession', function() use(&$di) {
             $flash = new FlashSession(new Escaper(), $di->get('session'));

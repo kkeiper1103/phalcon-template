@@ -36,13 +36,17 @@ foreach($iter as $fileInfo) {
     $config->merge($new);
 }
 
+//
+$container->set(\Psr\Http\Message\ServerRequestInterface::class, \Laminas\Diactoros\ServerRequestFactory::fromGlobals());
+$container->set(\Psr\Http\Message\ResponseInterface::class, new \Laminas\Diactoros\Response());
+
 foreach( $config->path('app.providers') as $provider ) {
     $container->register(new $provider);
 }
 
 $stack = new MiddlewareStack( new Application($container) );
 
-$stack->addMiddleware(new \App\Middleware\StartSessionMiddleware());
+$stack->addMiddleware(new \App\Middleware\StartSessionMiddleware( $container->get(\Phalcon\Session\Manager::class) ));
 $stack->addMiddleware(new \App\Middleware\CsrfTokenMiddleware());
 
 try {
