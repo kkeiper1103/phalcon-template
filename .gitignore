@@ -6,3 +6,5 @@ site/storage/uploads/*
 
 .idea/
 *.log
+
+.env
