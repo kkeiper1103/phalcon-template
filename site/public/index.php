@@ -9,6 +9,7 @@ use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Application;
 use Dotenv\Dotenv;
 
+
 define('BASE_PATH', dirname(__DIR__) . '/');
 const APP_PATH = BASE_PATH . '/src';
 
@@ -48,10 +49,22 @@ try {
     $response = $stack->handle($_SERVER['REQUEST_URI']);
 }
 catch(\App\Exceptions\TokenMismatchException $tme) {
-    $response = new \Phalcon\Http\Response("Token Mismatch", 403);
+    $view = $container->get(\Phalcon\Mvc\View\Simple::class);
+
+    // Render the view and capture the output
+    $content = $view->render('errors/403', ['error' => $tme]);
+
+    // Output the rendered content
+    $response = new \Phalcon\Http\Response($content, 500);
 }
 catch(Exception $e) {
-    $response = new \Phalcon\Http\Response("Server Error: " . $e->getMessage(), 500);
+    $view = $container->get(\Phalcon\Mvc\View\Simple::class);
+
+    // Render the view and capture the output
+    $content = $view->render('errors/500', ['error' => $e]);
+
+    // Output the rendered content
+    $response = new \Phalcon\Http\Response($content, 500);
 }
 
 $response->sendHeaders();

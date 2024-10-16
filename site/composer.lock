@@ -652,27 +652,27 @@
     "packages-dev": [
         {
             "name": "nette/php-generator",
-            "version": "v3.5.x-dev",
+            "version": "v3.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "59bb35ed6e8da95854fbf7b7d47dce6156b42915"
+                "reference": "ba0cbff78421897e3cc79ef43e359090c90727ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/59bb35ed6e8da95854fbf7b7d47dce6156b42915",
-                "reference": "59bb35ed6e8da95854fbf7b7d47dce6156b42915",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/ba0cbff78421897e3cc79ef43e359090c90727ed",
+                "reference": "ba0cbff78421897e3cc79ef43e359090c90727ed",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.1.2",
-                "php": ">=7.1"
+                "php": ">=7.2 <8.3"
             },
             "require-dev": {
-                "nette/tester": "^2.0",
-                "nikic/php-parser": "^4.4",
+                "nette/tester": "^2.4",
+                "nikic/php-parser": "^4.13",
                 "phpstan/phpstan": "^0.12",
-                "tracy/tracy": "^2.3"
+                "tracy/tracy": "^2.8"
             },
             "suggest": {
                 "nikic/php-parser": "to use ClassType::withBodiesFrom() & GlobalFunction::withBodyFrom()"
@@ -680,7 +680,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.5-dev"
+                    "dev-master": "3.6-dev"
                 }
             },
             "autoload": {
@@ -704,7 +704,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 8.0 features.",
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 8.1 features.",
             "homepage": "https://nette.org",
             "keywords": [
                 "code",
@@ -714,9 +714,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/php-generator/issues",
-                "source": "https://github.com/nette/php-generator/tree/v3.5.4"
+                "source": "https://github.com/nette/php-generator/tree/v3.6"
             },
-            "time": "2021-07-05T12:02:42+00:00"
+            "time": "2022-10-12T23:44:29+00:00"
         },
         {
             "name": "nette/utils",
@@ -1253,12 +1253,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "de23257c024f6b7ca426ef7b5c0b6ea4efb14b13"
+                "reference": "a97129d215b0730fe86c59f1ceefc6ad2e93533d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/de23257c024f6b7ca426ef7b5c0b6ea4efb14b13",
-                "reference": "de23257c024f6b7ca426ef7b5c0b6ea4efb14b13",
+                "url": "https://api.github.com/repos/symfony/console/zipball/a97129d215b0730fe86c59f1ceefc6ad2e93533d",
+                "reference": "a97129d215b0730fe86c59f1ceefc6ad2e93533d",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1338,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-08T07:22:49+00:00"
+            "time": "2024-10-13T12:36:15+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1828,6 +1828,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "vlucas/phpdotenv": 20,
+        "psr/http-message": 20,
         "phalcon/devtools": 20
     },
     "prefer-stable": false,
@@ -1838,5 +1839,5 @@
         "php": "8.3",
         "ext-phalcon": "5.8"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

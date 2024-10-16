@@ -8,7 +8,8 @@ use Phalcon\Mvc\Controller;
 class PostController extends Controller
 {
     public function index() {
-
+        $this->view->pick('posts/index');
+        $this->view->title = "Hello Post Controller";
     }
 
     public function create() {

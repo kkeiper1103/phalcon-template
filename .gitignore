@@ -5,3 +5,4 @@ site/storage/logs/*
 site/storage/uploads/*
 
 .idea/
+*.log

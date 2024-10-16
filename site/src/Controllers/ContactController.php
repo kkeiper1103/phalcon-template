@@ -7,7 +7,7 @@ use Phalcon\Mvc\Controller;
 
 class ContactController extends Controller
 {
-    public function indexAction() {
+    public function create() {
         $this->view->title = "Contact Us";
 
         $post = Post::findFirst();
@@ -15,7 +15,7 @@ class ContactController extends Controller
         $this->view->post = $post;
     }
 
-    public function postIndexAction() {
+    public function store() {
         var_dump($_POST);
     }
 }

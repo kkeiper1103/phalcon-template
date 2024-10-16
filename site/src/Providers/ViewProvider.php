@@ -14,12 +14,19 @@ class ViewProvider implements ServiceProviderInterface
     {
         $di->set(View::class, function() {
             $view = new View();
-            $view->setViewsDir(BASE_PATH . '/resources/views/');
+            $view->setViewsDir(BASE_PATH . 'resources/views/');
             $view->setLayout("layout");
 
             return $view;
         });
 
         $di->set('view', fn() => $di->get(View::class));
+
+        //
+        $di->set(View\Simple::class, function() {
+            $simple = new View\Simple();
+            $simple->setViewsDir(BASE_PATH . 'resources/views/');
+            return $simple;
+        });
     }
 }
